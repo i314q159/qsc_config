@@ -19,27 +19,6 @@ safe_remove() {
 	fi
 }
 
-autostart() {
-	mkdir -pv /home/$USER_NAME/.config/autostart
-
-	if [ ! -e "/home/$USER_NAME/.config/autostart/slaver_startup.sh.desktop" ]; then
-		cat >/home/$USER_NAME/.config/autostart/slaver_startup.sh.desktop <<EOF
-[Desktop Entry]
-Type=Application
-Exec=/home/$USER_NAME/slaver_startup.sh
-Hidden=false
-NoDisplay=false
-X-GNOME-Autostart-enabled=true
-Name[en_US]=qsc
-Name=qsc
-Comment[en_US]=
-Comment=
-EOF
-	fi
-
-	chown -R $USER_NAME:$USER_NAME /home/$USER_NAME/.config/autostart/
-}
-
 qsc_slaver() {
 	if [ -e "/home/$USER_NAME/qsc_ws" ]; then
 		# 删除上一台车的编译产物
@@ -60,8 +39,6 @@ qsc_slaver() {
 		chown $USER_NAME:$USER_NAME -R /home/$USER_NAME/qsc_ws
 		chown $USER_NAME:$USER_NAME /home/$USER_NAME/qsc_slaver.sh
 		chown $USER_NAME:$USER_NAME /home/$USER_NAME/slaver_startup.sh
-
-		autostart
 
 	else
 		echo "请检查清qsc_ws位置"

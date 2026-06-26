@@ -110,7 +110,6 @@ update_mirror
 # 需要先安装过 ros ，添加过相关软件源
 package_install() {
 	apt-get install -y libopenblas-dev ros-noetic-jsk-visualization libpcap-dev
-	apt install -y nmap
 }
 package_install
 

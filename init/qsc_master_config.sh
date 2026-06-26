@@ -111,7 +111,6 @@ update_mirror
 package_install() {
 	apt-get install -y libpcap-dev cutecom ros-noetic-jsk-visualization
 	apt install -y ros-noetic-serial ros-noetic-gtsam udev ros-noetic-geodesy
-	apt install -y nmap
 }
 package_install
 
@@ -435,9 +434,15 @@ stm32cubeprg_config
 
 # 配置串口权限
 imu_config() {
-	chmod 777 /dev/ttyS1
-	# 把用户加入 dialout 组
+	cat >/etc/udev/rules.d/70-ttyS1.rules <<EOF
+KERNEL=="ttyS1", GROUP="dialout", MODE="0660"
+EOF
+
 	usermod -aG dialout $USER_NAME
+
+	udevadm control --reload-rules
+	udevadm trigger
+
 }
 imu_config
 

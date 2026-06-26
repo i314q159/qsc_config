@@ -19,27 +19,6 @@ safe_remove() {
 	fi
 }
 
-autostart() {
-	mkdir -pv /home/$USER_NAME/.config/autostart
-
-	if [ ! -e "/home/$USER_NAME/.config/autostart/qsc.sh.desktop" ]; then
-		cat >/home/$USER_NAME/.config/autostart/qsc.sh.desktop <<EOF
-[Desktop Entry]6
-Type=Application
-Exec=/home/$USER_NAME/qsc.sh
-Hidden=false
-NoDisplay=false
-X-GNOME-Autostart-enabled=true
-Name[zh_CN]=qsc
-Name=qsc
-Comment[zh_CN]=
-Comment=
-EOF
-	fi
-
-	chown -R $USER_NAME:$USER_NAME /home/$USER_NAME/.config/autostart/
-}
-
 Livox-SDK2_config() {
 	safe_remove "$QSC_WORKSPACE/src/Livox-SDK2/build/"
 
@@ -78,8 +57,6 @@ qsc_master() {
 		echo "修复文件权限..."
 		chown $USER_NAME:$USER_NAME -R $QSC_WORKSPACE
 		chown $USER_NAME:$USER_NAME /home/$USER_NAME/qsc.sh
-
-		autostart
 
 	else
 		echo "请检查qws_ws位置"
