@@ -27,9 +27,7 @@ static_nics_config() {
 static_nics_config
 
 dhcp_nic_config() {
-
 	for item in "${dhcp_nics[@]}"; do
-
 		IFS=, read -r dev <<<"$item"
 		con="dhcp-$dev"
 		nmcli con add con-name "$con" ifname "$dev" type ethernet ipv4.method auto
