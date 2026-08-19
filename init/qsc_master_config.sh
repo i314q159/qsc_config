@@ -441,7 +441,7 @@ EOF
 	usermod -aG dialout $USER_NAME
 
 	udevadm control --reload-rules
-	udevadm trigger
+	udevadm trigger --subsystem-match=tty
 
 }
 imu_config
