@@ -286,6 +286,7 @@ EOF
 	chown -R $USER_NAME:$USER_NAME /home/$USER_NAME/.config/autostart/
 }
 
+# mid_360
 Livox-SDK2_config() {
 	safe_remove $QSC_WORKSPACE/src/Livox-SDK2/build/
 
@@ -294,6 +295,7 @@ Livox-SDK2_config() {
 		cmake --build build --target install -- -j 16
 }
 
+# mid_360
 livox_ros_driver2_config() {
 	source /opt/ros/noetic/setup.sh
 	cd $QSC_WORKSPACE/src/livox_ros_driver2-master/ &&
